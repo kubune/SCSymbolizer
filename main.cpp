@@ -37,10 +37,16 @@ namespace {
 
 #ifdef _WIN32
 using PathString = std::wstring;
+using ActionString = std::wstring;
 const wchar_t *const kOutputSuffix = L"_symbols.txt";
+const wchar_t *const kExportAction = L"export";
+const wchar_t *const kImportAction = L"import";
 #else
 using PathString = std::string;
+using ActionString = std::string;
 const char *const kOutputSuffix = "_symbols.txt";
+const char *const kExportAction = "export";
+const char *const kImportAction = "import";
 #endif
 
 using Magic = std::array<std::uint8_t, 4>;
@@ -336,7 +342,7 @@ int main(int argc, char **argv) {
 	const std::string programName = baseName((argc > 0 && argv != nullptr && argv[0] != nullptr) ? argv[0] : "SCSymbolizer");
 
 	PathString fileName;
-	std::wstring action = L"export"; // or import
+	ActionString action = kExportAction;
 	PathString symbolsFileName;
 	bool validArguments = false;
 
@@ -347,7 +353,7 @@ int main(int argc, char **argv) {
 		if (wideArgc >= 3) {
 			action = wideArgv[1];
 			fileName = wideArgv[2];
-			if (action == L"import" && wideArgc >= 4) {
+			if (action == kImportAction && wideArgc >= 4) {
 				symbolsFileName = wideArgv[3];
 			}
 			validArguments = true;
@@ -358,7 +364,7 @@ int main(int argc, char **argv) {
 	if (argc >= 3) {
 		action = argv[1];
 		fileName = argv[2];
-		if (action == "import" && argc >= 4) {
+		if (action == kImportAction && argc >= 4) {
 			symbolsFileName = argv[3];  
 		}
 		validArguments = true;
@@ -369,7 +375,7 @@ int main(int argc, char **argv) {
 		std::cout << "Usage: " << programName << " <action [export|import]> <file> [symbols file]" << std::endl;
 		return 1;
 	}
-	if (action == L"export") {
+	if (action == kExportAction) {
 		try {
 			const std::size_t count = extractSymbols(fileName);
 			std::cout << "Exported " << count << " symbols to " << displayPath(fileName) << displayPath(kOutputSuffix) << std::endl;
@@ -377,7 +383,7 @@ int main(int argc, char **argv) {
 			std::cerr << "Error: " << error.what() << std::endl;
 			return 1;
 		}
-	} else if (action == L"import") {
+	} else if (action == kImportAction) {
 		MachO::process(displayPath(fileName), displayPath(symbolsFileName), displayPath(fileName) + ".symbolized");
 		return 1;
 	} else {
