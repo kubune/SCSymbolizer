@@ -1,5 +1,5 @@
 # SCSymbolizer
-A tool made in C++ to export symbols from broken Mach-O files.
+A tool made in C++ to export/import symbols from/to broken Mach-O files.
 
 ![Example](./img/SCSymbolizerExample.gif)
 
