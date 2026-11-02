@@ -1,7 +1,7 @@
 # SCSymbolizer
 A tool made in C++ to export symbols from broken Mach-O files.
 
-![Example](img\SCSymbolizerExample.gif)
+![Example](./img/SCSymbolizerExample.gif)
 
 ## Usage
 ```
