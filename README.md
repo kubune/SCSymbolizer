@@ -9,7 +9,7 @@ A tool made in C++ to export/import symbols from/to broken Mach-O files.
 ```
 
 ## Building
-The tool should build on Windows, Linux and MacOS but I only guarantee Windows since the other enviroments weren't tested.
+The tool should build on Windows, Linux and MacOS but I only guarantee Windows and Linux since the other enviroments weren't tested.
 
 Debug:
 ```
