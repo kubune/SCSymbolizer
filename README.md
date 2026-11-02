@@ -23,7 +23,7 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build --config R
 ## Some info
 This tool is an upgraded version of [SupercellSymbolExtractor](https://github.com/xXCooBloyXx/SupercellSymbolExtractor) but made in C++ and with the abilitiy to import the symbols to the binary.
 
-The purpose of this tool is to fix the [LeakDay](https://github.com/xXCooBloyXx/SupercellSymbolExtractor) vulnerable standalone Mach-O binaries.
+The purpose of this tool is to fix the [LeakDay](https://github.com/DarKDevz/LeakDay) vulnerable standalone Mach-O binaries.
 
 ## Credits
 - CooBloy's [SupecellSymbolExtractor](https://github.com/xXCooBloyXx/SupercellSymbolExtractor)
